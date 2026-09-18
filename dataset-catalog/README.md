@@ -41,4 +41,4 @@ The script reads `CLICKHOUSE_HOST`, `CLICKHOUSE_PORT`, `CLICKHOUSE_USER`, and `C
 - The download service resolves a catalog filter to shared Parquet partitions or a bounded query.
 - Full historical archives remain available as partitioned advanced downloads rather than being copied into every logical dataset.
 
-Public redistribution of OECD-derived files still requires a reviewed source license and terms decision.
+OECD BIMTS files can be redistributed under the OECD Terms & Conditions when the required citation and acknowledgement are preserved. Separately sourced context fields require their own source review and are excluded from the first public batch.
