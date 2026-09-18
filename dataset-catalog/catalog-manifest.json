@@ -1,0 +1,22 @@
+{
+  "catalog_name": "Yugalinks Logical Trade Opportunity Dataset Catalog",
+  "status": "preview",
+  "logical_dataset_count": 10000,
+  "requested_dataset_count": 10000,
+  "generated_at": "2026-09-18T03:54:02+00:00",
+  "source_table": "trade_gold_oecd_bimts_6d.risk__lane_monitor_all__20260713",
+  "history_table": "trade_gold_oecd_bimts_6d.oecd_bimts_6d__core__corridor_product_year__v1",
+  "source_coverage": "1995-2024",
+  "selection": {
+    "lane_last_year_min": 2022,
+    "lane_data_years_min": 5,
+    "buyer_imports_latest_usd": "positive",
+    "addressable_proj_3y_usd": "positive"
+  },
+  "files": {
+    "catalog": "catalog.jsonl",
+    "schema": "catalog.schema.json",
+    "readme": "README.md"
+  },
+  "data_rows_exported": false
+}

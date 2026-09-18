@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://www.yugalinks.com/datasets/catalog.schema.json",
+  "title": "Yugalinks Logical Dataset Definition",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "dataset_id",
+    "title",
+    "kind",
+    "grain",
+    "filters",
+    "source",
+    "preview",
+    "download"
+  ],
+  "properties": {
+    "dataset_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]+$"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 20
+    },
+    "kind": {
+      "type": "string",
+      "enum": ["trade-opportunity-lane"]
+    },
+    "grain": {
+      "type": "string"
+    },
+    "filters": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["exporter_iso3", "importer_iso3", "hs_code"],
+      "properties": {
+        "exporter_iso3": { "type": "string", "pattern": "^[A-Z]{3}$" },
+        "importer_iso3": { "type": "string", "pattern": "^[A-Z]{3}$" },
+        "hs_code": { "type": "string", "pattern": "^[0-9]{6}$" }
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["table", "coverage", "status"],
+      "properties": {
+        "table": { "type": "string" },
+        "coverage": { "type": "string" },
+        "status": { "type": "string", "enum": ["derived"] }
+      }
+    },
+    "preview": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["rows", "url"],
+      "properties": {
+        "rows": { "type": "integer", "minimum": 1 },
+        "url": { "type": "string", "format": "uri-reference" }
+      }
+    },
+    "download": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mode", "url"],
+      "properties": {
+        "mode": { "type": "string", "enum": ["on-demand-filtered"] },
+        "url": { "type": "string", "format": "uri-reference" },
+        "history_source": { "type": "string" }
+      }
+    },
+    "rank": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "latest_year": {
+      "type": "integer",
+      "minimum": 1995
+    },
+    "history_years": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "estimated_addressable_3y_usd": {
+      "type": "number",
+      "minimum": 0
+    }
+  }
+}
