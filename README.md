@@ -19,8 +19,9 @@ Each catalog entry identifies a trade lane, its grain, source version, filters, 
 
 - Catalog status: preview
 - Logical dataset definitions: 10,000
-- Full data rows included: no
-- Public platform uploads: not yet
+- Full data rows in the Git repository: no
+- Public GitHub release: `v2026.09.18-batch-0001`
+- Kaggle/Hugging Face/Zenodo uploads: not yet
 - OECD BIMTS terms: permitted under OECD Terms & Conditions with attribution
 - Separately sourced context: excluded from the first batch pending source review
 
