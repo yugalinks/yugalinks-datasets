@@ -21,6 +21,7 @@ Each catalog entry identifies a trade lane, its grain, source version, filters, 
 - Logical dataset definitions: 10,000
 - Full data rows included: no
 - Public platform uploads: not yet
-- OECD-derived redistribution terms: pending review
+- OECD BIMTS terms: permitted under OECD Terms & Conditions with attribution
+- Separately sourced context: excluded from the first batch pending source review
 
 The first local batch generator creates 10 complete lane packages with a current snapshot and observed history. Generated Parquet files are intentionally ignored by Git until redistribution terms are reviewed.

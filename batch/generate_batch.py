@@ -17,6 +17,56 @@ DATABASE = "trade_gold_oecd_bimts_6d"
 RISK_TABLE = "risk__lane_monitor_all__20260713"
 HISTORY_TABLE = "oecd_bimts_6d__core__corridor_product_year__v1"
 CATALOG_PATH = Path(__file__).resolve().parent.parent / "dataset-catalog" / "catalog.jsonl"
+OECD_TERMS_URL = "https://www.oecd.org/termsandconditions/"
+OECD_SOURCE_URL = "https://data-explorer.oecd.org/"
+OECD_DATAFLOW_URL = "https://sdmx.oecd.org/sti-public/rest/dataflow/OECD.SDD.TPS/DSD_BIMTS_6D@DF_BIMTS_HS2017_6D/1.0"
+OECD_CITATION = "OECD (2025), Balanced international merchandise trade statistics (BIMTS) - HS2017-6D"
+
+OECD_SNAPSHOT_COLUMNS = (
+    "exporter_iso3",
+    "importer_iso3",
+    "hs_code",
+    "hs_description",
+    "buyer_imports_latest_usd",
+    "buyer_imports_avg_usd",
+    "buyer_imports_peak_usd",
+    "buyer_cagr_full_pct",
+    "buyer_yoy_avg_pct",
+    "buyer_yoy_latest_pct",
+    "exports_latest_usd",
+    "exports_avg_usd",
+    "exports_peak_usd",
+    "share_latest_pct",
+    "share_avg_pct",
+    "share_peak_pct",
+    "share_change_1y_pp",
+    "share_trend_pp_per_yr",
+    "cagr_full_pct",
+    "yoy_avg_pct",
+    "yoy_latest_pct",
+    "trend_consistency_pct",
+    "exports_proj_3y_usd",
+    "exports_proj_5y_usd",
+    "your_share_gap_pp",
+    "addressable_proj_3y_usd",
+    "addressable_proj_5y_usd",
+    "num_suppliers_latest",
+    "buyer_herfindahl_index",
+    "lane_volatility_cv",
+    "lane_max_drawdown_pct",
+    "signal_flag",
+    "lane_data_years",
+    "lane_last_year",
+    "current_below_peak_usd",
+    "current_below_peak_pct",
+    "latest_vs_historical_avg_pct",
+    "share_change_all_pp",
+    "volatility_label",
+    "drawdown_label",
+    "competition_label",
+    "demand_label",
+    "attention_level",
+)
 
 
 def parse_args() -> argparse.Namespace:
@@ -95,7 +145,8 @@ def build_package(entry: dict, package: Path) -> dict:
 
     snapshot_count_query = f"SELECT count() AS rows FROM {DATABASE}.{RISK_TABLE} WHERE {where}"
     history_count_query = f"SELECT count() AS rows FROM {DATABASE}.{HISTORY_TABLE} WHERE {where}"
-    snapshot_query = f"SELECT * FROM {DATABASE}.{RISK_TABLE} WHERE {where} FORMAT Parquet"
+    snapshot_columns = ", ".join(OECD_SNAPSHOT_COLUMNS)
+    snapshot_query = f"SELECT {snapshot_columns} FROM {DATABASE}.{RISK_TABLE} WHERE {where} FORMAT Parquet"
     history_query = (
         f"SELECT year, exporter_iso3, importer_iso3, hs_code, export_value_usd, yoy_growth_pct, cagr_3y_pct "
         f"FROM {DATABASE}.{HISTORY_TABLE} WHERE {where} ORDER BY year FORMAT Parquet"
@@ -123,12 +174,21 @@ def build_package(entry: dict, package: Path) -> dict:
     metadata = {
         "dataset": entry,
         "generated_at": datetime.now(timezone.utc).replace(microsecond=0).isoformat(),
-        "status": "local-private-preview",
+        "status": "public-ready-oecd-only",
         "source_tables": [f"{DATABASE}.{RISK_TABLE}", f"{DATABASE}.{HISTORY_TABLE}"],
         "coverage": "1995-2024",
+        "license": "OECD Terms & Conditions",
+        "terms_url": OECD_TERMS_URL,
+        "source_url": OECD_SOURCE_URL,
+        "dataflow_url": OECD_DATAFLOW_URL,
+        "citation": OECD_CITATION,
+        "acknowledgement": (
+            "Source: OECD (2025), Balanced international merchandise trade statistics "
+            "(BIMTS) - HS2017-6D, OECD Data Explorer, accessed 2026-09-18."
+        ),
+        "third_party_context_included": False,
         "files": files,
-        "license_status": "review-required",
-        "data_rows_are_public": False,
+        "data_rows_are_public": True,
     }
     (package / "metadata.json").write_text(json.dumps(metadata, indent=2) + "\n", encoding="utf-8")
     (package / "README.md").write_text(
@@ -137,8 +197,12 @@ def build_package(entry: dict, package: Path) -> dict:
         f"- Dataset ID: `{entry['dataset_id']}`\n"
         f"- Grain: `{entry['grain']}`\n"
         f"- Coverage: `1995-2024`\n"
+        f"- Source: {OECD_CITATION} ({OECD_SOURCE_URL})\n"
+        f"- Terms: {OECD_TERMS_URL}\n"
+        "- OECD attribution must remain with redistributed copies.\n"
+        "- This package excludes separately sourced macro, tariff, distance, and language context.\n"
         "- Projected values are estimates, not guaranteed revenue.\n"
-        "- Redistribution terms require review before public release.\n",
+        "- Calculated fields are derived from the reported trade observations.\n",
         encoding="utf-8",
     )
     return metadata
@@ -156,11 +220,14 @@ def main() -> int:
     ]
     manifest = {
         "batch_id": "batch-0001",
-        "status": "local-private-preview",
+        "status": "public-ready-oecd-only",
         "dataset_count": len(packages),
         "generated_at": datetime.now(timezone.utc).replace(microsecond=0).isoformat(),
-        "data_rows_are_public": False,
-        "license_status": "review-required",
+        "data_rows_are_public": True,
+        "license": "OECD Terms & Conditions",
+        "terms_url": OECD_TERMS_URL,
+        "citation": OECD_CITATION,
+        "third_party_context_included": False,
         "packages": [package["dataset"]["dataset_id"] for package in packages],
     }
     (args.output_dir / "batch-manifest.json").write_text(
