@@ -15,6 +15,14 @@ This repository currently contains a preview catalog, not a copy of the full Cli
 
 Each catalog entry identifies a trade lane, its grain, source version, filters, preview route, and on-demand download contract. The entries are metadata-only in this preview; no 312M-row archive is included.
 
+## Download Batch 0001
+
+- [Open the release page](https://github.com/yugalinks/yugalinks-datasets/releases/tag/v2026.09.18-batch-0001)
+- [Download all 10 datasets](https://github.com/yugalinks/yugalinks-datasets/releases/download/v2026.09.18-batch-0001/yugalinks-oecd-trade-batch-0001.zip)
+- [Download the Sweden-China HS6 example](https://github.com/yugalinks/yugalinks-datasets/releases/download/v2026.09.18-batch-0001/trade-opportunity-lane-swe-chn-260111.zip)
+
+The release page contains the individual download for every dataset in the batch. Downloads are public and do not require a GitHub account.
+
 ## Status
 
 - Catalog status: preview
