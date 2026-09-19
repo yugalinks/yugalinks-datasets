@@ -18,3 +18,11 @@ python3 batch/generate_batch.py --limit 10
 ```
 
 This creates a local OECD-only artifact. The package includes the OECD Terms & Conditions, citation, and acknowledgement. Separately sourced macro, tariff, distance, and language context is excluded from this batch.
+
+## PSEO T17 Sample
+
+`generate_t17_package.py` creates a small OECD-derived exporter opportunity package from the T17 source grain. It defaults to 50 ranked opportunities for China and excludes separately sourced macro, access, language, and institutional context.
+
+```bash
+python3 batch/generate_t17_package.py --exporter CHN --limit 50
+```

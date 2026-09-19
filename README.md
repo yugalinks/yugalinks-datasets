@@ -27,6 +27,14 @@ Each catalog entry identifies a trade lane, its grain, source version, filters, 
 
 The release page contains the individual download for every dataset in the batch. Downloads are public and do not require a GitHub account.
 
+## PSEO T17 Sample
+
+- [Open the PSEO T17 sample release](https://github.com/yugalinks/yugalinks-datasets/releases/tag/v2026.09.19-pseo-t17-0001)
+- [Download the 50-row China exporter opportunity sample](https://github.com/yugalinks/yugalinks-datasets/releases/download/v2026.09.19-pseo-t17-0001/pseo-t17-exporter-chn-0001.zip)
+- [Generate the sample locally](batch/README.md#pseo-t17-sample)
+
+This sample contains 50 ranked OECD-derived opportunity rows from 525,076 qualifying China opportunities. It is a validation sample, not the complete opportunity universe.
+
 ## Status
 
 - Catalog status: preview
