@@ -25,4 +25,4 @@ Each catalog entry identifies a trade lane, its grain, source version, filters, 
 - OECD BIMTS terms: permitted under OECD Terms & Conditions with attribution
 - Separately sourced context: excluded from the first batch pending source review
 
-The first local batch generator creates 10 complete lane packages with a current snapshot and observed history. Generated Parquet files are intentionally ignored by Git until redistribution terms are reviewed.
+The public `v2026.09.18-batch-0001` release contains 10 complete lane packages with current snapshots and observed history. The Parquet files are attached to the GitHub Release instead of being duplicated in the Git tree.
