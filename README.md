@@ -9,6 +9,7 @@ This repository currently contains a preview catalog, not a copy of the full Cli
 - [Logical dataset catalog](dataset-catalog/README.md)
 - [Catalog manifest](dataset-catalog/catalog-manifest.json)
 - [Catalog schema](dataset-catalog/catalog.schema.json)
+- [10,000-dataset allocation plan](dataset-catalog/allocation-plan.json)
 - [10,000 dataset definitions](dataset-catalog/catalog.jsonl)
 - [Reproducible generator](dataset-catalog/generate_catalog.py)
 - [First-batch generator](batch/README.md)

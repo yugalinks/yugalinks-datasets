@@ -1,0 +1,110 @@
+{
+  "status": "proposed",
+  "target_logical_dataset_count": 10000,
+  "description": "Proposed allocation of logical datasets across the live ClickHouse table families. Counts are catalog products, not copied physical tables.",
+  "families": [
+    {
+      "family": "opportunity-lanes",
+      "count": 4000,
+      "grain": "exporter_iso3 x importer_iso3 x hs_code",
+      "source_tables": [
+        "trade_gold_oecd_bimts_6d.risk__lane_monitor_all__20260713",
+        "trade_gold_oecd_bimts_6d.msme__serve__opportunity",
+        "trade_gold_oecd_bimts_6d.oecd_bimts_6d__core__corridor_product_year__v1"
+      ],
+      "selection": "Qualified lanes with at least five years of history, current observations, positive buyer-market value, and positive projected addressable value.",
+      "package_files": ["snapshot.parquet", "history.parquet", "metadata.json", "README.md"]
+    },
+    {
+      "family": "product-market",
+      "count": 2000,
+      "grain": "hs_code x importer_iso3",
+      "source_tables": [
+        "trade_gold_oecd_bimts_6d.product__import_market_all__20260715",
+        "trade_gold_oecd_bimts_6d.msme__mart_b__buyer_market",
+        "trade_gold_oecd_bimts_6d.oecd_bimts_6d__core__country_product_corridor_year__20260720"
+      ],
+      "selection": "Non-empty importer markets ranked by latest reported value, history length, and product relevance.",
+      "package_files": ["market_snapshot.parquet", "market_history.parquet", "metadata.json", "README.md"]
+    },
+    {
+      "family": "corridor-trade",
+      "count": 1500,
+      "grain": "exporter_iso3 x importer_iso3",
+      "source_tables": [
+        "trade_gold_oecd_bimts_6d.oecd_bimts_6d__core__corridor_year__v1",
+        "trade_gold_oecd_bimts_6d.gold__corridor_enriched__20260708",
+        "trade_gold_oecd_bimts_6d.risk__corridor_monitor_all__20260713"
+      ],
+      "selection": "Non-empty bilateral corridors with long history and meaningful recent trade value.",
+      "package_files": ["corridor_snapshot.parquet", "corridor_history.parquet", "metadata.json", "README.md"]
+    },
+    {
+      "family": "country-product-history",
+      "count": 1000,
+      "grain": "country_iso3 x hs_code",
+      "source_tables": [
+        "trade_gold_oecd_bimts_6d.oecd_bimts_6d__core__country_hs2_year__v1",
+        "trade_gold_oecd_bimts_6d.oecd_bimts_6d__core__country_hs4_year__v1",
+        "trade_gold_oecd_bimts_6d.oecd_bimts_6d__core__country_product_corridor_year__20260720"
+      ],
+      "selection": "Country-product pairs with reported observations across multiple years.",
+      "package_files": ["country_product_snapshot.parquet", "country_product_history.parquet", "metadata.json", "README.md"]
+    },
+    {
+      "family": "trade-risk",
+      "count": 500,
+      "grain": "country_or_corridor_or_lane",
+      "source_tables": [
+        "trade_gold_oecd_bimts_6d.risk__country_monitor_all__20260713",
+        "trade_gold_oecd_bimts_6d.risk__corridor_monitor_all__20260713",
+        "trade_gold_oecd_bimts_6d.risk__lane_monitor_all__20260713"
+      ],
+      "selection": "Country, corridor, and lane risk records with clear source years and risk drivers.",
+      "package_files": ["risk_snapshot.parquet", "risk_history.parquet", "metadata.json", "README.md"]
+    },
+    {
+      "family": "price-intelligence",
+      "count": 500,
+      "grain": "exporter_iso3 x importer_iso3 x hs_code x year",
+      "source_tables": [
+        "trade_gold_oecd_bimts_6d.oecd_bimts_6d__price__corridor_product_trend__20260710",
+        "trade_gold_oecd_bimts_6d.oecd_bimts_6d__price__corridor_product_year__20260710",
+        "trade_gold_oecd_bimts_6d.oecd_bimts_6d__price__market_ranking__20260710"
+      ],
+      "selection": "Non-empty price histories with enough observations to show movement and ranking.",
+      "package_files": ["price_snapshot.parquet", "price_history.parquet", "metadata.json", "README.md"]
+    },
+    {
+      "family": "product-profiles",
+      "count": 300,
+      "grain": "hs_code x year_or_latest",
+      "source_tables": [
+        "trade_gold_oecd_bimts_6d.oecd_bimts_6d__profile__product_year__v1",
+        "trade_gold_oecd_bimts_6d.product__overview_all__20260715",
+        "trade_gold_oecd_bimts_6d.product__exporter_all__20260715",
+        "trade_gold_oecd_bimts_6d.product__top_corridor_all__20260715"
+      ],
+      "selection": "High-interest HS6 products with meaningful global trade and supplier/market context.",
+      "package_files": ["product_profile.parquet", "product_markets.parquet", "metadata.json", "README.md"]
+    },
+    {
+      "family": "country-profiles",
+      "count": 200,
+      "grain": "country_iso3 x year_or_latest",
+      "source_tables": [
+        "trade_gold_oecd_bimts_6d.oecd_bimts_6d__profile__country_year__v1",
+        "trade_gold_oecd_bimts_6d.gold__country_profile_enriched__20260708",
+        "trade_gold_oecd_bimts_6d.risk__country_monitor_all__20260713"
+      ],
+      "selection": "One current profile per covered country with historical trade context.",
+      "package_files": ["country_profile.parquet", "country_history.parquet", "metadata.json", "README.md"]
+    }
+  ],
+  "excluded_as_standalone_products": [
+    "trade_gold_oecd_bimts_6d.oecd_bimts_6d__selector__country_availability__v1",
+    "trade_gold_oecd_bimts_6d.oecd_bimts_6d__selector__corridor_availability__v1",
+    "trade_gold_oecd_bimts_6d.oecd_bimts_6d__core__country_product_corridor_year__v1",
+    "trade_gold_oecd_bimts_6d.oecd_bimts_6d__core__country_product_corridor_year__V2"
+  ]
+}
