@@ -11,6 +11,7 @@ This repository currently contains a preview catalog, not a copy of the full Cli
 - [Catalog schema](dataset-catalog/catalog.schema.json)
 - [10,000-dataset allocation plan](dataset-catalog/allocation-plan.json)
 - [PSEO dataset opportunities](dataset-catalog/pseo-opportunities.json)
+- [PSEO package manifest](dataset-catalog/pseo-package-manifest.json)
 - [10,000 dataset definitions](dataset-catalog/catalog.jsonl)
 - [Reproducible generator](dataset-catalog/generate_catalog.py)
 - [First-batch generator](batch/README.md)
