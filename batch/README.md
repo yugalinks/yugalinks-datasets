@@ -26,3 +26,11 @@ This creates a local OECD-only artifact. The package includes the OECD Terms & C
 ```bash
 python3 batch/generate_t17_package.py --exporter CHN --limit 50
 ```
+
+## 50,000 Gold-Marts Catalog
+
+`generate_50000_gold_catalog.py` selects a balanced 50,000 products across the 43 physical gold tables and their algorithm families. It writes one JSONL catalog and one normalized Parquet collection to `releases/top-50000-gold-catalog/`.
+
+```bash
+python3 batch/generate_50000_gold_catalog.py
+```

@@ -35,6 +35,14 @@ The release page contains the individual download for every dataset in the batch
 
 This sample contains 50 ranked OECD-derived opportunity rows from 525,076 qualifying China opportunities. It is a validation sample, not the complete opportunity universe.
 
+## 50,000 Gold-Marts Catalog
+
+- [Open the 50,000-product release](https://github.com/yugalinks/yugalinks-datasets/releases/tag/v2026.09.19-gold-50000-0001)
+- [Download the grouped catalog ZIP](https://github.com/yugalinks/yugalinks-datasets/releases/download/v2026.09.19-gold-50000-0001/top-50000-gold-catalog.zip)
+- [Generate it locally](batch/README.md#50000-gold-marts-catalog)
+
+This release contains 50,000 logical dataset entries and 50,000 selected source rows distributed across 12 gold-mart algorithm families. It is one grouped collection, not 50,000 separate platform listings.
+
 ## Status
 
 - Catalog status: preview
