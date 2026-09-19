@@ -13,6 +13,7 @@ This repository currently contains a preview catalog, not a copy of the full Cli
 - [10,000 dataset definitions](dataset-catalog/catalog.jsonl)
 - [Reproducible generator](dataset-catalog/generate_catalog.py)
 - [First-batch generator](batch/README.md)
+- [Dataset story template](templates/dataset-story-template.md)
 
 Each catalog entry identifies a trade lane, its grain, source version, filters, preview route, and on-demand download contract. The entries are metadata-only in this preview; no 312M-row archive is included.
 
