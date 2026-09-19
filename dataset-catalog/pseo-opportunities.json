@@ -1,0 +1,28 @@
+{
+  "status": "inventory",
+  "description": "PSEO page/input opportunities that can be converted into documented data packages. Counts are not all unique downloadable datasets.",
+  "eligible_candidate_count_before_caps": 23233391,
+  "eligible_candidate_count_with_t13_cap": 5722424,
+  "families": [
+    {"family": "T1", "purpose": "Global product market overview", "eligible_inputs": 5383},
+    {"family": "T2", "purpose": "Product import market profile", "eligible_inputs": 594018},
+    {"family": "T3", "purpose": "Product exporter position", "eligible_inputs": 304738},
+    {"family": "T4", "purpose": "Product exporter price position", "eligible_inputs": 528103},
+    {"family": "T5", "purpose": "HS2 sector overview", "eligible_inputs": 97},
+    {"family": "T6", "purpose": "HS4 subsector overview", "eligible_inputs": 1223},
+    {"family": "T7", "purpose": "Product top corridors", "eligible_inputs": 5375},
+    {"family": "T8", "purpose": "HS2 top corridors", "eligible_inputs": 97},
+    {"family": "T9", "purpose": "HS4 top corridors", "eligible_inputs": 1223},
+    {"family": "T10", "purpose": "Country export capability", "eligible_inputs": 200},
+    {"family": "T11", "purpose": "Country import demand", "eligible_inputs": 200},
+    {"family": "T12", "purpose": "Corridor pair risk", "eligible_inputs": 11604},
+    {"family": "T13", "purpose": "HS6 export opportunity", "eligible_inputs": 19010967, "publication_cap": 1500000},
+    {"family": "T14", "purpose": "HS6 risk and access", "eligible_inputs": 1762008},
+    {"family": "T15", "purpose": "New corridor signals", "eligible_inputs": 520053},
+    {"family": "T16", "purpose": "Trade anomaly watch", "eligible_inputs": 485119},
+    {"family": "T17", "purpose": "Exporter opportunity index", "eligible_inputs": 200, "opportunity_rows_per_page_max": 1000},
+    {"family": "T18", "purpose": "Importer opportunity index", "eligible_inputs": 200, "opportunity_rows_per_page_max": 50},
+    {"family": "T19", "purpose": "Regional exporter playbook", "eligible_inputs": 1617},
+    {"family": "T20", "purpose": "Sector exporter playbook", "eligible_inputs": 966}
+  ]
+}
