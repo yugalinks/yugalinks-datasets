@@ -39,6 +39,8 @@ This sample contains 50 ranked OECD-derived opportunity rows from 525,076 qualif
 
 - [Open the 50,000-product release](https://github.com/yugalinks/yugalinks-datasets/releases/tag/v2026.09.19-gold-50000-0001)
 - [Download the grouped catalog ZIP](https://github.com/yugalinks/yugalinks-datasets/releases/download/v2026.09.19-gold-50000-0001/top-50000-gold-catalog.zip)
+- [Download the actual 50,000-row Parquet dataset](https://github.com/yugalinks/yugalinks-datasets/releases/download/v2026.09.19-gold-50000-0001/selected_gold_rows.parquet)
+- [Download the 50,000-entry catalog JSONL](https://github.com/yugalinks/yugalinks-datasets/releases/download/v2026.09.19-gold-50000-0001/catalog.jsonl)
 - [Generate it locally](batch/README.md#50000-gold-marts-catalog)
 
 This release contains 50,000 logical dataset entries and 50,000 selected source rows distributed across 12 gold-mart algorithm families. It is one grouped collection, not 50,000 separate platform listings.
