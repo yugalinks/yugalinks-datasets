@@ -1,19 +1,19 @@
-# Yugalinks Logical Dataset Catalog
+# Yugalinks Dataset Catalog
 
-This directory is a GitHub-first preview of the scalable dataset model.
+This catalog helps people discover focused Yugalinks datasets for product, country, market, and exporter-importer research.
 
-It is a catalog of logical dataset definitions, not a copy of the 312M-row trade tables. Each catalog entry describes one useful filtered dataset that can be previewed and downloaded from a shared partitioned archive or retrieved through a parameterized API query.
+Each entry describes a useful view of reported international import-export data. It explains the subject, countries, products, years, available measures, and how the entry can be explored or downloaded. The catalog is a guide to the collection; it is not a replacement for the full source datasets.
 
 ## Files
 
-- `catalog.jsonl`: one JSON object per logical dataset.
-- `catalog.schema.json`: JSON Schema for every catalog entry.
-- `catalog-manifest.json`: generation metadata and selection rules.
-- `generate_catalog.py`: reproducible generator using local ClickHouse metadata/data.
+- `catalog.jsonl`: one JSON object for each dataset entry.
+- `catalog.schema.json`: the structure shared by catalog entries.
+- `catalog-manifest.json`: collection coverage and release information.
+- `generate_catalog.py`: a maintainer tool for refreshing the catalog.
 
 ## Current Preview
 
-The default generator creates 10,000 qualified exporter-product-buyer opportunity-lane definitions from `risk__lane_monitor_all__20260713`.
+The current preview contains 10,000 selected exporter-product-buyer opportunity entries.
 
 Selection rules:
 
@@ -22,23 +22,22 @@ Selection rules:
 - `buyer_imports_latest_usd > 0`
 - `addressable_proj_3y_usd > 0`
 
-Each entry has a stable lane identifier, title, grain, filters, source table, source coverage, estimated preview size, and an on-demand download contract. It does not claim that a projected value is guaranteed revenue.
+Each entry includes a stable identifier, a plain-language title, the countries and products involved, available years, measures, and access information. A projected value is an analytical estimate, not a promise of revenue.
 
-## Regenerate
+## For Maintainers
 
-Run this from the repository root with local ClickHouse available:
+Maintainers can refresh the catalog from the repository root:
 
 ```bash
 python3 dataset-catalog/generate_catalog.py --limit 10000
 ```
 
-The script reads `CLICKHOUSE_HOST`, `CLICKHOUSE_PORT`, `CLICKHOUSE_USER`, and `CLICKHOUSE_PASSWORD` from the environment when provided. It does not publish data to Kaggle, Hugging Face, Zenodo, or a public API.
+The generated catalog is reviewed before any public release. Credentials and private data-access settings belong in the local runtime environment and must never be added to this repository or to public dataset descriptions.
 
-## Intended Distribution
+## Explore the Data
 
-- GitHub stores the catalog definition, schema, generator, and release metadata.
-- Yugalinks exposes one page and preview per logical dataset.
-- The download service resolves a catalog filter to shared Parquet partitions or a bounded query.
-- Full historical archives remain available as partitioned advanced downloads rather than being copied into every logical dataset.
+Use each catalog entry to review its subject, coverage, measures, and access options before downloading or working with the data.
 
-OECD BIMTS files can be redistributed under the OECD Terms & Conditions when the required citation and acknowledgement are preserved. Separately sourced context fields require their own source review and are excluded from the first public batch.
+The Yugalinks website provides a readable page and preview for selected entries. Full historical files are available through the linked dataset releases.
+
+The collection is based primarily on published OECD BIMTS data. Review each dataset's source notes and provider terms before redistribution or commercial use, and preserve the required citation and acknowledgement. Separately sourced context is identified on the relevant dataset page.
